@@ -10,7 +10,7 @@ module.exports = function withShop({ authBaseUrl } = {}) {
       return;
     }
 
-    response.cookie(TEST_COOKIE_NAME, '1');
+    response.cookie(TEST_COOKIE_NAME, '1', {  secure: true, sameSite: "none" });
 
     if (shop) {
       response.redirect(`${authBaseUrl || baseUrl}/auth?shop=${shop}`);

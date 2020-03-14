@@ -25,7 +25,7 @@ module.exports = function createShopifyAuthRoutes({
 
       if (!request.cookies[TEST_COOKIE_NAME]) {
         // This is to avoid a redirect loop if the app doesn't use verifyRequest or set the test cookie elsewhere.
-        response.cookie(TEST_COOKIE_NAME, '1');
+        response.cookie(TEST_COOKIE_NAME, '1', {  secure: true, sameSite: "none" });
         topLevelRedirect(response, `${host}${baseUrl}/enable_cookies?${querystring.stringify({shop})}`);
         return;
       }
@@ -44,7 +44,7 @@ module.exports = function createShopifyAuthRoutes({
       }
 
       if (!request.cookies[TOP_LEVEL_OAUTH_COOKIE_NAME]) {
-        response.cookie(TOP_LEVEL_OAUTH_COOKIE_NAME, '1');
+        response.cookie(TOP_LEVEL_OAUTH_COOKIE_NAME, '1', {  secure: true, sameSite: "none" });
         topLevelRedirect(response, `${redirectTo}?${querystring.stringify(redirectParams)}`);
         return;
       }
