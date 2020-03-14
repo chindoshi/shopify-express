@@ -49,7 +49,7 @@ module.exports = function createShopifyAuthRoutes({
         return;
       }
 
-      response.clearCookie(TOP_LEVEL_OAUTH_COOKIE_NAME);
+      response.clearCookie(TOP_LEVEL_OAUTH_COOKIE_NAME, {  secure: true, sameSite: "none" });
       response.redirect(`${redirectTo}?${querystring.stringify(redirectParams)}`);
     },
 

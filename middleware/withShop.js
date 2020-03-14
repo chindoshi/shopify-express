@@ -5,7 +5,7 @@ module.exports = function withShop({ authBaseUrl } = {}) {
     const { query: { shop }, session, baseUrl } = request;
 
     if (session && session.accessToken) {
-      response.clearCookie(TOP_LEVEL_OAUTH_COOKIE_NAME);
+      response.clearCookie(TOP_LEVEL_OAUTH_COOKIE_NAME, {  secure: true, sameSite: "none" });
       next();
       return;
     }
